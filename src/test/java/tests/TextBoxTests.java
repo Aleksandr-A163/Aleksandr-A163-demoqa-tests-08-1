@@ -8,19 +8,20 @@ import utils.RandomData;
 public class TextBoxTests extends WebTestBase {
 
     TextBoxPage textBox = new TextBoxPage();
-
+    RandomData randomData = new RandomData();
     @Test
     void fillFormTest() {
         textBox.openPage()
         .bannerDrop()
-                .setFullName("Ahmed")
-                .setEmail("testahmed@gmail.com")
-                .setCurrentAddress("Istanbul")
-                .setPermanentAddress("Istanbul 33")
+                .setFullName(randomData.firstName)
+                .setEmail(randomData.lastName)
+                .setCurrentAddress(randomData.currentAddress)
+                .setPermanentAddress(randomData.currentAddress)
                 .submitClick()
-                .checkResult("name","Ahmed")
-                .checkResult("email","testahmed@gmail.com")
-                .checkResult("currentAddress","Istanbul")
-                .checkResult("permanentAddress","Istanbul 33");
+
+                .checkResult("name",randomData.firstName)
+                .checkResult("email",randomData.lastName)
+                .checkResult("currentAddress",randomData.currentAddress)
+                .checkResult("permanentAddress",randomData.currentAddress);
     }
 }
