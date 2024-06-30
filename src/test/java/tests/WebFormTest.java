@@ -61,7 +61,7 @@ public class WebFormTest extends WebTestBase {
                 .setFirstName(randomData.lastName)
                 .setLastName(randomData.firstName)
                 .setGender("Male")
-                .setDateOfBirth("0", randomData.BirthMonth, randomData.BirthYear)
+                .setDateOfBirth(randomData.BirthDay , randomData.BirthMonth, randomData.BirthYear)
                 .submitClick()
                 .checkAbsenceFormResult();
     }

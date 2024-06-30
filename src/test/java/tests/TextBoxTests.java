@@ -14,12 +14,12 @@ public class TextBoxTests extends WebTestBase {
         textBox.openPage()
         .bannerDrop()
                 .setFullName(randomData.firstName)
-                .setEmail(randomData.lastName)
+                .setEmail(randomData.email)
                 .setCurrentAddress(randomData.currentAddress)
                 .setPermanentAddress(randomData.currentAddress)
                 .submitClick()
                 .checkResult("name",randomData.firstName)
-                .checkResult("email",randomData.lastName)
+                .checkResult("email",randomData.email)
                 .checkResult("currentAddress",randomData.currentAddress)
                 .checkResult("permanentAddress",randomData.currentAddress);
     }
