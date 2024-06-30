@@ -11,20 +11,21 @@ public class RandomData {
     months = {"January", "February", "March", "April",
             "May", "June", "July", "August", "September", "October", "November", "December"},
     pictures = {"1.jpeg", "2.png", "3.bmp"};
-       public String firstName = faker.name().firstName(),
+
+    public String firstName = faker.name().firstName(),
     lastName = faker.name().lastName(),
     email = faker.internet().emailAddress(),
     currentAddress = faker.address().streetAddress(),
     phoneNumber = faker.phoneNumber().subscriberNumber(10),
-    gender = getRandomItemFromArray(genders),
-    BirthDay = String.format("%02d", faker.number().numberBetween(1, 28)),
+    gender = faker.options().option("Male", "Female", "Other"),
+    BirthDay = String.format("%02d", faker.number().numberBetween(1, 30)),
     BirthMonth = getRandomItemFromArray(months),
     BirthYear = String.valueOf(faker.number().numberBetween(1900,2100)),
     hobby = getRandomItemFromArray(hobbies),
     subject = getRandomItemFromArray(subjects),
     state = getState(),
     city = getRandomCity(),
-    picture = getRandomItemFromArray(pictures);
+    picture = faker.options().option("leopard.jpg", "men.jpg");;
 
     public String getState() {
         state = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");

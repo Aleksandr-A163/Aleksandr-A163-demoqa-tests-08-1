@@ -1,63 +1,67 @@
 package tests;
 
+import utils.RandomData;
 import org.junit.jupiter.api.Test;
 import pages.WebFormPage;
 
 public class WebFormTest extends WebTestBase {
         WebFormPage webFormPage = new WebFormPage();
+        RandomData randomData = new RandomData();
 
     @Test
     void webFormTest() {
         webFormPage.openPage()
         .bannerDrop()
-                .setFirstName("Ahmed")
-                .setLastName("Ahmedov")
-                .setEmail("testahmed@gmail.com")
-                .setGender("Male")
-                .setUserNumber("7904744684")
-                .setDateOfBirth("11", "April", "1985")
-                .setSubject("Maths")
-                .setHobby("Sports")
-                .uploadFile("leopard.jpg")
-                .setCurrentAddress("Istanbul")
-                .setState("Haryana")
-                .setCity("Karnal")
+                .setFirstName(randomData.firstName)
+                .setLastName(randomData.lastName)
+                .setEmail(randomData.email)
+                .setGender(randomData.gender)
+                .setUserNumber(randomData.phoneNumber)
+                .setDateOfBirth(randomData.BirthDay, randomData.BirthMonth, randomData.BirthYear)
+                .setSubject(randomData.subject)
+                .setHobby(randomData.hobby)
+                .uploadFile(randomData.picture)
+                .setCurrentAddress(randomData.currentAddress)
+                .setState(randomData.state)
+                .setCity(randomData.city)
                 .submitClick()
-                .checkResult("Student Name", "Ahmed Ahmedov")
-                .checkResult("Student Email", "testahmed@gmail.com")
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", "7904744684")
-                .checkResult("Date of Birth", "11 April,1985")
-                .checkResult("Subjects", "Maths")
-                .checkResult("Hobbies", "Sports")
-                .checkResult("Picture", "leopard.jpg")
-                .checkResult("Address", "Istanbul")
-                .checkResult("State and City", "Haryana Karnal");
+
+                .checkResult("Student Name", randomData.firstName + " " + randomData.lastName)
+                .checkResult("Student Email", randomData.email)
+                .checkResult("Gender", randomData.gender)
+                .checkResult("Mobile", randomData.phoneNumber)
+                .checkResult("Date of Birth", String.format(randomData.BirthDay + " " + randomData.BirthMonth + "," + randomData.BirthYear))
+                .checkResult("Subjects", randomData.subject)
+                .checkResult("Hobbies", randomData.hobby)
+                .checkResult("Picture", randomData.picture)
+                .checkResult("Address", randomData.currentAddress)
+                .checkResult("State and City", randomData.state + " " + randomData.city);
     }
     @Test
     void shortFillFormTest() {
         webFormPage.openPage();
         webFormPage.bannerDrop()
-                .setFirstName("Ahmed")
-                .setLastName("Ahmedov")
-                .setGender("Male")
-                .setUserNumber("7904744684")
-                .setDateOfBirth("11", "April", "1985")
+                .setFirstName(randomData.firstName)
+                .setLastName(randomData.lastName)
+                .setGender(randomData.gender)
+                .setUserNumber(randomData.phoneNumber)
+                .setDateOfBirth(randomData.BirthDay, randomData.BirthMonth, randomData.BirthYear)
                 .submitClick()
-                .checkResult("Student Name", "Ahmed Ahmedov")
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", "7904744684")
-                .checkResult("Date of Birth", "11 April,1985");
+
+                .checkResult("Student Name", randomData.firstName + " " + randomData.lastName)
+                .checkResult("Gender", randomData.gender)
+                .checkResult("Mobile", randomData.phoneNumber)
+                .checkResult("Date of Birth", String.format(randomData.BirthDay + " " + randomData.BirthMonth + "," + randomData.BirthYear));
     }
 
     @Test
     void incorrectFillFormTest() {
         webFormPage.openPage();
         webFormPage.bannerDrop()
-                .setFirstName("Ahmed1")
-                .setLastName("Ahmedov")
+                .setFirstName(randomData.lastName)
+                .setLastName(randomData.firstName)
                 .setGender("Male")
-                .setDateOfBirth("29", "September", "1986")
+                .setDateOfBirth("0", randomData.BirthMonth, randomData.BirthYear)
                 .submitClick()
                 .checkAbsenceFormResult();
     }
