@@ -18,7 +18,6 @@ public class TextBoxTests extends WebTestBase {
                 .setCurrentAddress(randomData.currentAddress)
                 .setPermanentAddress(randomData.currentAddress)
                 .submitClick()
-
                 .checkResult("name",randomData.firstName)
                 .checkResult("email",randomData.lastName)
                 .checkResult("currentAddress",randomData.currentAddress)
