@@ -1,9 +1,14 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import utils.RandomData;
 import org.junit.jupiter.api.Test;
 import pages.WebFormPage;
 
+
+@Tag("form")
+@DisplayName("Тесты для большой формы")
 public class WebFormTest extends WebTestBase {
         WebFormPage webFormPage = new WebFormPage();
         RandomData randomData = new RandomData();
